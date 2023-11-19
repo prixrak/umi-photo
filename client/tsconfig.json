@@ -31,9 +31,11 @@
       "@styles/*": ["styles/*"],
       "@assets/*": ["assets/*"],
       "@interfaces/*": ["interfaces/*"],
-      "@enums/*": ["enums/*"]
+      "@enums/*": ["enums/*"],
+      "@helpers/*": ["helpers/*"],
+      "@store/*": ["store/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/index.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

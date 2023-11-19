@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Inter var';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('assets/fonts/Inter.woff2') format('woff2');
+  font-named-instance: 'Regular';
+}
+
+html {
+  -webkit-font-smoothing: auto;
+}
+
+body {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 14px;
+  line-height: 140%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter var', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
