@@ -7,6 +7,7 @@ import { Hoodie } from '@pages/Hoodie';
 import { NikeTrainers } from '@pages/NikeTrainers';
 import { AnimatePresence, motion } from 'framer-motion';
 import state from './store';
+import { NewBalance574 } from '@pages/NewBalance574';
 
 const App = () => {
   const store = useStore();
@@ -27,7 +28,7 @@ const App = () => {
       >
         <Home />
       </div>
-      <Hoodie />
+      <NewBalance574 />
       <AnimatePresence>
         {!store.tabs.intro && (
           <motion.div
