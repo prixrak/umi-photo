@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { Home } from '@pages/Home';
 import { Shirt } from '@pages/Shirt';
 import { Hoodie } from '@pages/Hoodie';
+import { NikeTrainers } from '@pages/NikeTrainers';
 import { AnimatePresence, motion } from 'framer-motion';
 import state from './store';
 
