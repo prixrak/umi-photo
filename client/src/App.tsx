@@ -1,8 +1,9 @@
-import { baseTransition } from '@helpers/motion';
+ import { baseTransition } from '@helpers/motion';
 import { useStore } from '@hooks/useStore';
 import { Button } from '@mui/material';
 import { Home } from '@pages/Home';
 import { Shirt } from '@pages/Shirt';
+import { Hoodie } from '@pages/Hoodie';
 import { AnimatePresence, motion } from 'framer-motion';
 import state from './store';
 
@@ -25,7 +26,7 @@ const App = () => {
       >
         <Home />
       </div>
-      <Shirt />
+      <Hoodie />
       <AnimatePresence>
         {!store.tabs.intro && (
           <motion.div
