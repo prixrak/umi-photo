@@ -1,9 +1,8 @@
+import { Tabs } from '@enums/Tabs';
 import { proxy } from 'valtio';
 
 const state = proxy({
-  tabs: {
-    intro: true,
-  },
+  tabs: Tabs.intro,
   main: {
     color: '#EFBD48',
   },

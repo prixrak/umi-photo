@@ -4,6 +4,7 @@ import React, { FC, useEffect, useRef } from 'react';
 import { Group } from 'three';
 import { getBreakpoints } from '@helpers/helpers';
 import { useStore } from '@hooks/useStore';
+import { Tabs } from '@enums/Tabs';
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ export const CameraRig: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     camera.position.set(0, 0, 100);
-  }, [camera.position, store.tabs.intro]);
+  }, [camera.position, store.tabs]);
 
   useFrame((state, delta) => {
     if (!group.current) return;
@@ -24,7 +25,7 @@ export const CameraRig: FC<Props> = ({ children }) => {
 
     // set the initial position of the model
     let targetPosition: [number, number, number] = [-0.7, -0.1, 2];
-    if (store.tabs.intro) {
+    if (store.tabs === Tabs.intro) {
       if (isTablet) targetPosition = [0, 0.4, 2];
       if (isMobile) targetPosition = [0, 0.6, 2.5];
     } else {

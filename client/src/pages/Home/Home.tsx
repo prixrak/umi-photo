@@ -5,13 +5,14 @@ import state from '@store/index';
 import { headContainerAnimation, headContentAnimation, headTextAnimation, slideAnimation } from '@helpers/motion';
 import Logo from '@assets/logo.png';
 import { useStore } from '@hooks/useStore';
+import { Tabs } from '@enums/Tabs';
 
 export const Home: FC = () => {
   const store = useStore();
 
   return (
     <AnimatePresence>
-      {store.tabs.intro && (
+      {store.tabs === Tabs.intro && (
         <motion.section {...slideAnimation('left')}>
           <motion.header {...slideAnimation('down')}>
             <Box
@@ -62,7 +63,7 @@ export const Home: FC = () => {
                       color: 'black',
                     },
                   }}
-                  onClick={() => (state.tabs.intro = false)}
+                  onClick={() => (state.tabs = Tabs.shirt)}
                 >
                   Customize It
                 </Button>
