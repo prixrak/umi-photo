@@ -4,6 +4,7 @@ import { Center, Environment, OrbitControls } from '@react-three/drei';
 import { Backdrop } from '@components/Backdrop';
 import { CameraRig } from '@components/CameraRig';
 import { useStore } from '@hooks/useStore';
+import { Tabs } from '@enums/Tabs';
 
 interface Props {
   children: React.ReactNode;
@@ -17,7 +18,7 @@ export const CanvasForModel: FC<Props> = ({ children }) => {
       <ambientLight intensity={0.5} />
       <Environment preset="city" />
 
-      {store.tabs.intro ? (
+      {store.tabs === Tabs.intro ? (
         <>
           <Backdrop />
           <CameraRig>

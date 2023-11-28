@@ -7,6 +7,7 @@ import { Mesh, MeshStandardMaterial, Texture } from 'three';
 import ShirtGlbUrl from '@assets/glb/shirt.glb?url';
 import LogoUrl from '@assets/logo.png?url';
 import { useStore } from '@hooks/useStore';
+import { Tabs } from '@enums/Tabs';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -29,7 +30,7 @@ export const ShirtModel: FC<Props> = () => {
 
   useFrame(({ clock }, delta) => {
     if (myMesh.current) {
-      if (store.tabs.intro) {
+      if (store.tabs === Tabs.intro) {
         myMesh.current.rotation.y = Math.sin(clock.getElapsedTime()) / 4;
       } else {
         myMesh.current.rotation.y = -0.35;

@@ -1,23 +1,21 @@
 import React, { FC } from 'react';
-import { Decal, useGLTF, useTexture } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath';
 import { GLTF } from 'three-stdlib';
-import { Mesh, MeshStandardMaterial, Texture } from 'three';
+import { Mesh, MeshStandardMaterial } from 'three';
 import NewBalance574GlbUrl from '@assets/glb/new_balance_574.glb?url';
 import TextureUrl from '@assets/new_balance_574.jpeg';
 import { useStore } from '@hooks/useStore';
 import { TextureLoader } from 'three';
-
+import { Tabs } from '@enums/Tabs';
 
 function createMaterial() {
   // create a texture loader.
   const textureLoader = new TextureLoader();
 
   // load a texture
-  const texture = textureLoader.load(
-    TextureUrl,
-  );
+  const texture = textureLoader.load(TextureUrl);
 
   // create a "standard" material using
   // the texture we just loaded as a color map
@@ -37,8 +35,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-
-let loaded_texture = createMaterial();
+const loaded_texture = createMaterial();
 
 interface Props {}
 
@@ -52,7 +49,7 @@ export const NewBalance574Model: FC<Props> = () => {
 
   useFrame(({ clock }, delta) => {
     if (myMesh.current) {
-      if (store.tabs.intro) {
+      if (store.tabs === Tabs.intro) {
         myMesh.current.rotation.y = Math.sin(clock.getElapsedTime()) / 4;
       } else {
         myMesh.current.rotation.y = -0.35;
