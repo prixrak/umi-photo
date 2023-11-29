@@ -22,21 +22,6 @@ export const slideAnimation = (direction: string) => {
   };
 };
 
-export const fadeAnimation = {
-  initial: {
-    opacity: 0,
-    transition: { ...transition, delay: 0.5 },
-  },
-  animate: {
-    opacity: 1,
-    transition: { ...transition, delay: 0 },
-  },
-  exit: {
-    opacity: 0,
-    transition: { ...transition, delay: 0 },
-  },
-};
-
 export const headTextAnimation = {
   initial: { x: 100, opacity: 0 },
   animate: { x: 0, opacity: 1 },

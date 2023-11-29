@@ -7,7 +7,7 @@ import { HoodieModel } from '@components/HoodieModel';
 import { NewBalance574Model } from '@components/NewBalance574Model';
 import { NikeTrainersModel } from '@components/NikeTrainersModel';
 import { ReebokSneakersModel } from '@components/ReebokSneakersModel';
-import { Controllers } from './components';
+import { Controllers } from './components/Controllers/Controllers';
 
 export const ModelsView: FC = () => {
   const store = useStore();
@@ -29,8 +29,8 @@ export const ModelsView: FC = () => {
         ) : store.tabs === Tabs.nike ? (
           <NikeTrainersModel />
         ) : store.tabs === Tabs.reebok ? (
-          <ReebokSneakersModel />)
-        : null}
+          <ReebokSneakersModel />
+        ) : null}
       </CanvasForModel>
       <Controllers />
     </div>

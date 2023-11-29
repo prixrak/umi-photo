@@ -1,13 +1,10 @@
 import React, { FC } from 'react';
 import { Decal, useGLTF, useTexture } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
-import { easing } from 'maath';
 import { GLTF } from 'three-stdlib';
 import { Mesh, MeshStandardMaterial, Texture } from 'three';
 import ShirtGlbUrl from '@assets/glb/shirt.glb?url';
 import LogoUrl from '@assets/logo.png?url';
 import { useStore } from '@hooks/useStore';
-import { Tabs } from '@enums/Tabs';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -23,22 +20,8 @@ interface Props {}
 export const ShirtModel: FC<Props> = () => {
   const store = useStore();
   const { nodes, materials } = useGLTF(ShirtGlbUrl) as GLTFResult;
-  const logoTexture = useTexture(LogoUrl);
+  const logoTexture = useTexture(store.controllers.imgFromUpload ?? LogoUrl);
   const myMesh = React.useRef<Mesh>(null);
-
-  // const fullTexture = useTexture(LogoUrl);
-
-  useFrame(({ clock }, delta) => {
-    if (myMesh.current) {
-      if (store.tabs === Tabs.intro) {
-        myMesh.current.rotation.y = Math.sin(clock.getElapsedTime()) / 4;
-      } else {
-        myMesh.current.rotation.y = -0.35;
-      }
-    }
-
-    easing.dampC(materials.lambert1.color, 'black', 0.25, delta);
-  });
 
   const stateString = JSON.stringify(store);
 
@@ -52,7 +35,7 @@ export const ShirtModel: FC<Props> = () => {
         material-roughness={1}
         dispose={null}
       >
-        {/* <Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1} map={fullTexture as Texture} /> */}
+        <meshStandardMaterial color={store.controllers.color} />
 
         <Decal
           position={[0, 0.04, 0.15]}
