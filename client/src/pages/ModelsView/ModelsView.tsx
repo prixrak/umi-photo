@@ -6,7 +6,7 @@ import { Tabs } from '@enums/Tabs';
 import { HoodieModel } from '@components/HoodieModel';
 import { NewBalance574Model } from '@components/NewBalance574Model';
 import { NikeTrainersModel } from '@components/NikeTrainersModel';
-import { Controllers } from './components';
+import { Controllers } from './components/Controllers/Controllers';
 
 export const ModelsView: FC = () => {
   const store = useStore();

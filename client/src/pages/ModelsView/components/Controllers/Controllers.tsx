@@ -8,6 +8,7 @@ import ShirtSvg from '@assets/tabs/shirt.svg';
 import state from '@store/index';
 import { useStore } from '@hooks/useStore';
 import { Tabs } from '@enums/Tabs';
+import { Customizer } from '../Customizer/Customizer';
 
 export const Controllers: FC = () => {
   const store = useStore();
@@ -83,15 +84,7 @@ export const Controllers: FC = () => {
                 ))}
               </Grid>
             </motion.div>
-            <motion.div
-              {...{
-                initial: { position: 'absolute', left: 0, top: '40%', opacity: 0 },
-                animate: { position: 'absolute', left: 20, top: '50%', transform: 'translateY(-50%)', opacity: 1 },
-                transition: baseTransition,
-              }}
-            >
-              <Typography variant="h6">dsadsadsada</Typography>
-            </motion.div>
+            <Customizer />
           </>
         )}
       </AnimatePresence>

@@ -1,14 +1,11 @@
 import React, { FC } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
-import { easing } from 'maath';
 import { GLTF } from 'three-stdlib';
 import { Mesh, MeshStandardMaterial } from 'three';
 import NikeTrainersGlbUrl from '@assets/glb/nike_trainers.glb?url';
 import TextureUrl from '@assets/nike_trainers.jpeg';
 import { useStore } from '@hooks/useStore';
 import { TextureLoader } from 'three';
-import { Tabs } from '@enums/Tabs';
 
 function createMaterial() {
   // create a texture loader.
@@ -41,22 +38,8 @@ interface Props {}
 
 export const NikeTrainersModel: FC<Props> = () => {
   const store = useStore();
-  const { nodes, materials } = useGLTF(NikeTrainersGlbUrl) as GLTFResult;
+  const { nodes } = useGLTF(NikeTrainersGlbUrl) as GLTFResult;
   const myMesh = React.useRef<Mesh>(null);
-
-  // const fullTexture = useTexture(LogoUrl);
-
-  useFrame(({ clock }, delta) => {
-    if (myMesh.current) {
-      if (store.tabs === Tabs.intro) {
-        myMesh.current.rotation.y = Math.sin(clock.getElapsedTime()) / 4;
-      } else {
-        myMesh.current.rotation.y = -0.35;
-      }
-    }
-
-    easing.dampC(materials.Material.color, 'black', 0.25, delta);
-  });
 
   const stateString = JSON.stringify(store);
 
@@ -70,6 +53,8 @@ export const NikeTrainersModel: FC<Props> = () => {
         material-roughness={1}
         dispose={null}
       >
+        <meshStandardMaterial color={store.controllers.color} />
+
         {/* <Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1} map={fullTexture as Texture} /> */}
       </mesh>
     </group>

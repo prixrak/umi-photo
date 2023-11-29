@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 import { Decal, useGLTF, useTexture } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
-import { easing } from 'maath';
 import { GLTF } from 'three-stdlib';
 import { Mesh, MeshStandardMaterial, Texture } from 'three';
 import HoodieGlbUrl from '@assets/glb/hoodie.glb?url';
@@ -10,9 +8,9 @@ import { useStore } from '@hooks/useStore';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_4: Mesh
-    Object_5: Mesh
-    Object_6: Mesh
+    Object_4: Mesh;
+    Object_5: Mesh;
+    Object_6: Mesh;
   };
   materials: {
     Material: MeshStandardMaterial;
@@ -24,14 +22,8 @@ interface Props {}
 export const HoodieModel: FC<Props> = () => {
   const store = useStore();
   const { nodes, materials } = useGLTF(HoodieGlbUrl) as GLTFResult;
-  const logoTexture = useTexture(LogoUrl);
   const myMesh = React.useRef<Mesh>(null);
-
-  // const fullTexture = useTexture(LogoUrl);
-
-  useFrame(({ clock }, delta) => {
-    easing.dampC(materials.Material.color, 'black', 0.25, delta);
-  });
+  const logoTexture = useTexture(store.controllers.imgFromUpload ?? LogoUrl);
 
   const stateString = JSON.stringify(store);
 
@@ -45,7 +37,7 @@ export const HoodieModel: FC<Props> = () => {
         material-roughness={1}
         dispose={null}
       >
-
+        <meshStandardMaterial color={store.controllers.color} />
       </mesh>
 
       <mesh
@@ -56,9 +48,10 @@ export const HoodieModel: FC<Props> = () => {
         material-roughness={1}
         dispose={null}
       >
+        <meshStandardMaterial color={store.controllers.color} />
 
-      <Decal
-          position={[0, 0.04, 0.15]}
+        <Decal
+          position={[0, 0.06, 0.1]}
           rotation={[0, 0, 0]}
           scale={0.15}
           map={logoTexture as Texture}
@@ -67,7 +60,7 @@ export const HoodieModel: FC<Props> = () => {
         />
       </mesh>
 
-       <mesh
+      <mesh
         ref={myMesh}
         castShadow
         geometry={nodes.Object_6.geometry}
@@ -75,8 +68,8 @@ export const HoodieModel: FC<Props> = () => {
         material-roughness={1}
         dispose={null}
       >
+        <meshStandardMaterial color={store.controllers.color} />
       </mesh>
     </group>
-    
   );
 };

@@ -28,9 +28,6 @@ export const CameraRig: FC<Props> = ({ children }) => {
     if (store.tabs === Tabs.intro) {
       if (isTablet) targetPosition = [0, 0.4, 2];
       if (isMobile) targetPosition = [0, 0.6, 2.5];
-    } else {
-      if (isMobile) targetPosition = [0, 0, 2.5];
-      else targetPosition = [0, 0, 2];
     }
 
     // set model camera position
