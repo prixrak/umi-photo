@@ -1,1 +1,1 @@
-export * from './NewBalance574Model';
+export * from './ReebokSneakersModel';

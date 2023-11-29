@@ -4,10 +4,11 @@ import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath';
 import { GLTF } from 'three-stdlib';
 import { Mesh, MeshStandardMaterial, Texture } from 'three';
-import NewBalance574GlbUrl from '@assets/glb/new_balance_574.glb?url';
-import TextureUrl from '@assets/new_balance_574.jpeg';
+import ReebokSneakersGlbUrl from '@assets/glb/reebok_sneakers.glb?url';
+import TextureUrl from '@assets/reebok_sneakers.jpg';
 import { useStore } from '@hooks/useStore';
 import { TextureLoader } from 'three';
+import { Tabs } from '@enums/Tabs';
 
 
 function createMaterial() {
@@ -30,7 +31,7 @@ function createMaterial() {
 
 type GLTFResult = GLTF & {
   nodes: {
-    NewBalance574: Mesh;
+    ReebokSneakers: Mesh;
   };
   materials: {
     Material: MeshStandardMaterial;
@@ -42,17 +43,18 @@ let loaded_texture = createMaterial();
 
 interface Props {}
 
-export const NewBalance574Model: FC<Props> = () => {
+export const ReebokSneakersModel: FC<Props> = () => {
   const store = useStore();
-  const { nodes, materials } = useGLTF(NewBalance574GlbUrl) as GLTFResult;
+  const { nodes, materials } = useGLTF(ReebokSneakersGlbUrl) as GLTFResult;
 
   const myMesh = React.useRef<Mesh>(null);
 
   // const fullTexture = useTexture(LogoUrl);
 
+
   useFrame(({ clock }, delta) => {
     if (myMesh.current) {
-      if (store.tabs.intro) {
+      if (store.tabs === Tabs.intro) {
         myMesh.current.rotation.y = Math.sin(clock.getElapsedTime()) / 4;
       } else {
         myMesh.current.rotation.y = -0.35;
@@ -69,7 +71,7 @@ export const NewBalance574Model: FC<Props> = () => {
       <mesh
         ref={myMesh}
         castShadow
-        geometry={nodes.NewBalance574.geometry}
+        geometry={nodes.ReebokSneakers.geometry}
         material={loaded_texture}
         material-roughness={1}
         dispose={null}
