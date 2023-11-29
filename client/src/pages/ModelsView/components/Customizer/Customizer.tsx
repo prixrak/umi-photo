@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SketchPicker } from 'react-color';
 import { useStore } from '@hooks/useStore';
-import { Box, Grid } from '@mui/material';
+import { Box, Button, Grid, TextField } from '@mui/material';
 import state from '@store/index';
 import { baseTransition } from '@helpers/motion';
 import { CustomPopover } from '@components/CustomPopover';
 import ColorPickerImg from '@assets/customizer/color-picker.png';
 import UploadFilePng from '@assets/customizer/upload-file.png';
+import GenerateImgPng from '@assets/customizer/generate-img.png';
 import { FilePond } from 'react-filepond';
 import { FilePondFile, registerPlugin } from 'filepond';
 import { useStyles } from './Customizer.styles';
@@ -56,6 +57,30 @@ export const Customizer = () => {
       state.controllers.imgFromUpload = result;
     });
   }, [files]);
+
+  const [prompt, setPrompt] = useState('');
+
+  const handleSubmit = async () => {
+    if (!prompt) return alert('Please enter a prompt');
+
+    try {
+      const response = await fetch('http://localhost:8080/api/v1/dalle', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt,
+        }),
+      });
+
+      const data = await response.json();
+
+      state.controllers.imgFromUpload = `data:image/png;base64,${data.photo}`;
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -179,6 +204,61 @@ export const Customizer = () => {
                     }}
                   />
                 </div>
+              ),
+              props: {
+                anchorOrigin: {
+                  vertical: 'top',
+                  horizontal: 'right',
+                },
+                sx: {
+                  marginLeft: '12px',
+                },
+              },
+            }}
+          />
+          <CustomPopover
+            button={{
+              element: (
+                <Box
+                  sx={{
+                    width: '40px',
+                    height: '40px',
+                  }}
+                  component="img"
+                  src={GenerateImgPng}
+                />
+              ),
+            }}
+            popover={{
+              element: (
+                <Grid
+                  display="flex"
+                  flexDirection="column"
+                  rowGap="10px"
+                  sx={{
+                    padding: '10px',
+                  }}
+                >
+                  <TextField value={prompt} onChange={(element) => setPrompt(element.target.value)} />
+                  <Button
+                    sx={{
+                      color: 'white',
+                      backgroundColor: 'black',
+
+                      '&:hover': {
+                        backgroundColor: 'white',
+                        color: 'black',
+                        border: '1px solid black',
+                      },
+                      width: '90%',
+                      textAlign: 'center',
+                      alignSelf: 'center',
+                    }}
+                    onClick={handleSubmit}
+                  >
+                    Generate icon
+                  </Button>
+                </Grid>
               ),
               props: {
                 anchorOrigin: {

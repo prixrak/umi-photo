@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { baseTransition } from '@helpers/motion';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 import HoodieSvg from '@assets/tabs/hoodie.svg';
 import ShoeSvg from '@assets/tabs/shoe.svg';

@@ -53,9 +53,7 @@ export const NewBalance574Model: FC<Props> = () => {
         material={loaded_texture}
         material-roughness={1}
         dispose={null}
-      >
-        {/* <Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1} map={fullTexture as Texture} /> */}
-      </mesh>
+      ></mesh>
     </group>
   );
 };

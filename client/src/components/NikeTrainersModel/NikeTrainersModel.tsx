@@ -54,8 +54,6 @@ export const NikeTrainersModel: FC<Props> = () => {
         dispose={null}
       >
         <meshStandardMaterial color={store.controllers.color} />
-
-        {/* <Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1} map={fullTexture as Texture} /> */}
       </mesh>
     </group>
   );
