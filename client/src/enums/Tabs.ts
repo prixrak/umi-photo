@@ -4,4 +4,5 @@ export enum Tabs {
   hoodie = 'hoodie',
   newBalance = 'newBalance',
   nike = 'nike',
+  reebok = 'reebok',
 }
