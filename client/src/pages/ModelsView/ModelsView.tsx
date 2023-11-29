@@ -6,6 +6,7 @@ import { Tabs } from '@enums/Tabs';
 import { HoodieModel } from '@components/HoodieModel';
 import { NewBalance574Model } from '@components/NewBalance574Model';
 import { NikeTrainersModel } from '@components/NikeTrainersModel';
+import { ReebokSneakersModel } from '@components/ReebokSneakersModel';
 import { Controllers } from './components/Controllers/Controllers';
 
 export const ModelsView: FC = () => {
@@ -27,6 +28,8 @@ export const ModelsView: FC = () => {
           <NewBalance574Model />
         ) : store.tabs === Tabs.nike ? (
           <NikeTrainersModel />
+        ) : store.tabs === Tabs.reebok ? (
+          <ReebokSneakersModel />
         ) : null}
       </CanvasForModel>
       <Controllers />
