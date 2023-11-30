@@ -5,7 +5,6 @@ import OpenAI from "openai";
 dotenv.config();
 
 const router = express.Router();
-console.log("api key ----->", process.env.OPENAI_API_KEY);
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -25,7 +24,7 @@ router.route("/").post(async (req, res) => {
       response_format: "b64_json",
     });
 
-    const image = response.data.data[0].b64_json;
+    const image = response.data[0].b64_json;
 
     res.status(200).json({ photo: image });
   } catch (error) {
